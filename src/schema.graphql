@@ -10,9 +10,7 @@ type Mutation {
   signup(email: String!, password: String!, name: String!): AuthPayload
   login(email: String!, password: String!): AuthPayload
   createArticle(title: String!, categoryIds: [String!]!, paragraphes: [String!]!): Article
-  deleteArticle(id: ID!): Article
-  addParagraph(content: String!, articleId: Int!): Paragraph
-  updateParagraph(id: ID!, content: String!): Paragraph
+  upsertParagraph(id: ID, content: String!, articleId: String, order: Int): Paragraph
   deleteParagraph(id: ID!): Paragraph
   changeParagraphOrder(paragraphes: [String!]!): [Paragraph]!
 }

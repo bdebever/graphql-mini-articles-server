@@ -27,6 +27,31 @@ function createArticle(parent, { title, categoryIds, paragraphes }, ctx, info) {
     });
 }
 
+function upsertParagraph(parent, { id, content, articleId, order }, ctx, info) {
+  // Create or update
+  return ctx.prisma.upsertParagraph({
+      create: {
+        content,
+        order,
+        article: {
+          connect: {
+            id: articleId
+          }
+        }
+      },
+      update: {
+        content
+      },
+      where: {
+        id
+      }
+    });
+}
+
+function deleteParagraph(parent, { id }, ctx, info) {
+  return ctx.prisma.deleteParagraph({ id });
+}
+
 async function signup(parent, args, ctx, info) {
   const password = await bcrypt.hash(args.password, 10)
   const user = await ctx.prisma.createUser({
@@ -89,6 +114,8 @@ async function changeParagraphOrder(parent, { paragraphes }, ctx, info) {
 
 module.exports = {
   createArticle,
+  deleteParagraph,
+  upsertParagraph,
   signup,
   login,
   changeParagraphOrder
