@@ -1,5 +1,5 @@
 {
-  "name": "hackernews-graphql-js",
+  "name": "server-graphql-articles",
   "scripts": {
     "start": "node src/index.js",
     "dev": "npm-run-all --parallel start playground",
@@ -11,6 +11,10 @@
     "bcryptjs": "^2.4.3",
     "graphql-yoga": "^1.16.9",
     "prisma-binding": "^2.2.11"
+  },
+  "engines": {
+    "node": "8.4.0",
+    "npm": "6.2.0"
   },
   "devDependencies": {
     "graphql-cli": "^3.0.3",
